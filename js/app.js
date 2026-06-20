@@ -1,8 +1,6 @@
 import { setupCamera } from "./camera.js";
 import { createFaceLandmarker } from "./face.js";
 
-alert("app.js loaded");
-
 import {
 calcEAR,
 LEFT_EYE
