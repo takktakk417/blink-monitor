@@ -21,19 +21,23 @@ const FILES = [
     "./assets/mediapipe/wasm/vision_wasm_internal.wasm"
 ];
 
-self.addEventListener(
-    "install",
-    event => {
+self.addEventListener("install", event => {
+  event.waitUntil(
+    caches.open(CACHE_NAME).then(async cache => {
 
-        event.waitUntil(
+      for (const file of FILES) {
+        try {
+          const res = await fetch(file);
+          if (!res.ok) throw new Error("bad response");
+          await cache.put(file, res);
+        } catch (e) {
+          console.warn("skip cache:", file);
+        }
+      }
 
-            caches.open(CACHE_NAME)
-            .then(cache =>
-                cache.addAll(FILES)
-            )
-        );
-    }
-);
+    })
+  );
+});
 
 self.addEventListener(
     "fetch",
