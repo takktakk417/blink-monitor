@@ -1,0 +1,99 @@
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Blink Monitor</title>
+
+<link rel="stylesheet" href="./css/style.css">
+
+<link
+    rel="manifest"
+    href="./manifest.json">
+
+</head>
+
+<script>
+if(
+    "serviceWorker"
+    in navigator
+){
+
+    navigator.serviceWorker.register(
+        "./service-worker.js"
+    );
+}
+</script>
+
+<body>
+
+<div id="container">
+
+    <div id="left">
+
+        <h1>Blink Monitor</h1>
+
+        <video
+            id="video"
+            autoplay
+            playsinline>
+        </video>
+
+        <div id="buttons">
+
+            <button id="pauseBtn">
+                Pause
+            </button>
+
+            <button id="resetBtn">
+                Reset
+            </button>
+
+            <button id="clearBtn">
+                Clear History
+            </button>
+
+        </div>
+
+    </div>
+
+    <div id="right">
+
+        <div id="info">
+            Loading...
+        </div>
+
+        <div
+            id="state"
+            class="normal">
+            Normal
+        </div>
+
+    </div>
+
+    <div id="history">
+    No history
+    </div>
+
+    <canvas
+    id="blinkChart"
+    width="300"
+    height="150">
+</canvas>
+
+</div>
+
+
+
+<script
+    type="module"
+    src="./js/app.js">
+</script>
+
+<script src="./assets/libs/chart.umd.js"></script>
+
+<script
+    type="module"
+    src="./js/app.js">
+</script>
+
+</body>
